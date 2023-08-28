@@ -4,16 +4,15 @@ server:
 spring:
   application:
     name: business-person-v1
-  datasource:
-    url: jdbc:mysql://localhost:3306/person_db
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/person_db
     username: root
     password: farro123
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 10
-      idle-timeout: 10000
-      max-lifetime: 30000
-      connection-timeout: 20000
-  jpa:
-    hibernate:
-      ddl-auto: none
+#    pool:
+#      max-size: 10
+#      max-idle-time: 10000
+#      max-life-time: 30000
+#      max-create-connection-time: 20000
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
