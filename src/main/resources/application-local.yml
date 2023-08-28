@@ -8,11 +8,8 @@ spring:
     url: r2dbc:mysql://localhost:3306/person_db
     username: root
     password: farro123
-#    pool:
-#      max-size: 10
-#      max-idle-time: 10000
-#      max-life-time: 30000
-#      max-create-connection-time: 20000
-#  jpa:
-#    hibernate:
-#      ddl-auto: none
+    pool:
+      max-size: 10
+      max-idle-time: 10000
+      max-life-time: 30000
+      max-create-connection-time: 20000
