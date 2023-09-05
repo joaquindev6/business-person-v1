@@ -5,7 +5,7 @@ spring:
   application:
     name: business-person-v1
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/person_db
+    url: r2dbc:mysql://localhost:3306/person_db?useSSL=true&serverTimezone=America/Lima
     username: root
     password: farro123
     pool:
