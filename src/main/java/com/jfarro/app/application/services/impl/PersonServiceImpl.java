@@ -3,10 +3,10 @@ package com.jfarro.app.application.services.impl;
 import com.jfarro.app.application.services.DocumentTypeService;
 import com.jfarro.app.application.services.PersonService;
 import com.jfarro.app.domain.model.Person;
-import com.jfarro.app.domain.ports.out.CreatePersonCaseUse;
-import com.jfarro.app.domain.ports.out.DeletePersonCaseUse;
-import com.jfarro.app.domain.ports.out.RetrievalPersonCaseUse;
-import com.jfarro.app.domain.ports.out.UpdatePersonCaseUse;
+import com.jfarro.app.domain.ports.out.CreateCaseUse;
+import com.jfarro.app.domain.ports.out.DeleteCaseUse;
+import com.jfarro.app.domain.ports.out.RetrievalCaseUse;
+import com.jfarro.app.domain.ports.out.UpdateCaseUse;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import lombok.AllArgsConstructor;
@@ -16,26 +16,25 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class PersonServiceImpl implements PersonService {
 
-    private final CreatePersonCaseUse createPersonCaseUse;
-    private final UpdatePersonCaseUse updatePersonCaseUse;
-    private final DeletePersonCaseUse deletePersonCaseUse;
-    private final RetrievalPersonCaseUse retrievalPersonCaseUse;
-
+    private final CreateCaseUse<Person> createCaseUse;
+    private final UpdateCaseUse<Person> updateCaseUse;
+    private final DeleteCaseUse deleteCaseUse;
+    private final RetrievalCaseUse<Person> retrievalCaseUse;
     private final DocumentTypeService documentTypeService;
 
     @Override
     public Observable<Person> create(Person person) {
-        return createPersonCaseUse.create(person);
+        return createCaseUse.create(person);
     }
 
     @Override
     public Completable delete(Integer personId) {
-        return deletePersonCaseUse.delete(personId);
+        return deleteCaseUse.delete(personId);
     }
 
     @Override
     public Observable<Person> findAll() {
-        return retrievalPersonCaseUse.findAll()
+        return retrievalCaseUse.findAll()
                 .flatMap(person -> documentTypeService.findById(person.getDocumentType().getDocumentTypeId())
                         .map(documentType -> {
                             person.setDocumentType(documentType);
@@ -45,11 +44,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Observable<Person> findById(Integer personId) {
-        return retrievalPersonCaseUse.findById(personId);
+        return retrievalCaseUse.findById(personId);
     }
 
     @Override
     public Observable<Person> update(Person person) {
-        return updatePersonCaseUse.update(person);
+        return updateCaseUse.update(person);
     }
 }

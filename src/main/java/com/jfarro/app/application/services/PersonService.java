@@ -1,11 +1,10 @@
 package com.jfarro.app.application.services;
 
-import com.jfarro.app.domain.ports.out.CreatePersonCaseUse;
-import com.jfarro.app.domain.ports.out.DeletePersonCaseUse;
-import com.jfarro.app.domain.ports.out.RetrievalPersonCaseUse;
-import com.jfarro.app.domain.ports.out.UpdatePersonCaseUse;
-import org.springframework.stereotype.Component;
+import com.jfarro.app.domain.model.Person;
+import com.jfarro.app.domain.ports.out.CreateCaseUse;
+import com.jfarro.app.domain.ports.out.DeleteCaseUse;
+import com.jfarro.app.domain.ports.out.RetrievalCaseUse;
+import com.jfarro.app.domain.ports.out.UpdateCaseUse;
 
-@Component
-public interface PersonService extends CreatePersonCaseUse, UpdatePersonCaseUse, DeletePersonCaseUse, RetrievalPersonCaseUse {
+public interface PersonService extends CreateCaseUse<Person>, UpdateCaseUse<Person>, DeleteCaseUse, RetrievalCaseUse<Person> {
 }

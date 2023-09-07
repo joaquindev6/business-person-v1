@@ -1,7 +1,7 @@
 package com.jfarro.app.application.usecases;
 
 import com.jfarro.app.domain.model.Person;
-import com.jfarro.app.domain.ports.out.CreatePersonCaseUse;
+import com.jfarro.app.domain.ports.out.CreateCaseUse;
 import com.jfarro.app.domain.ports.in.PersonRepository;
 import io.reactivex.Observable;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CreatePersonCaseUseImpl implements CreatePersonCaseUse {
+public class CreatePersonCaseUseImpl implements CreateCaseUse<Person> {
 
     private final PersonRepository personRepository;
 

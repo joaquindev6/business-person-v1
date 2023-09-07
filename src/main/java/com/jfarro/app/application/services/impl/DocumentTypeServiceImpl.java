@@ -2,7 +2,7 @@ package com.jfarro.app.application.services.impl;
 
 import com.jfarro.app.application.services.DocumentTypeService;
 import com.jfarro.app.domain.model.DocumentType;
-import com.jfarro.app.domain.ports.out.RetrievalDocumentTypeCaseUse;
+import com.jfarro.app.domain.ports.out.RetrievalCaseUse;
 import io.reactivex.Observable;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DocumentTypeServiceImpl implements DocumentTypeService {
 
-    private final RetrievalDocumentTypeCaseUse retrievalDocumentTypeCaseUse;
+    private final RetrievalCaseUse<DocumentType> retrievalDocumentTypeCaseUse;
 
     @Override
     public Observable<DocumentType> findAll() {
