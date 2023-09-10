@@ -1,6 +1,6 @@
 package com.jfarro.app.infrastructure.adapters;
 
-import com.jfarro.app.domain.model.DocumentType;
+import com.jfarro.app.domain.model.DocumentTypeModel;
 import com.jfarro.app.domain.ports.in.DocumentTypeRepository;
 import com.jfarro.app.infrastructure.mapper.DocumentTypeMapper;
 import io.reactivex.Observable;
@@ -19,7 +19,7 @@ public class DocumentTypeRepositoryAdapter implements DocumentTypeRepository {
     private final DocumentTypeMapper documentTypeMapper;
 
     @Override
-    public Observable<DocumentType> findAll() {
+    public Observable<DocumentTypeModel> findAll() {
         return RxJava2Adapter.fluxToObservable(documentTypeRepositoryMySQL.findAll())
                 .subscribeOn(Schedulers.io())
                 .map(documentTypeMapper::documentTypeToDomain)
@@ -29,7 +29,7 @@ public class DocumentTypeRepositoryAdapter implements DocumentTypeRepository {
     }
 
     @Override
-    public Observable<DocumentType> findById(Integer documentTypeId) {
+    public Observable<DocumentTypeModel> findById(Integer documentTypeId) {
         return RxJava2Adapter.fluxToObservable(documentTypeRepositoryMySQL.findById(documentTypeId).flux())
                 .subscribeOn(Schedulers.io())
                 .map(documentTypeMapper::documentTypeToDomain)

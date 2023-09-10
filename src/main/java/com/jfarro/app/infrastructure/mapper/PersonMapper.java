@@ -1,38 +1,50 @@
 package com.jfarro.app.infrastructure.mapper;
 
-import com.jfarro.app.domain.model.DocumentType;
-import com.jfarro.app.domain.model.Person;
-import com.jfarro.app.domain.entities.PersonEntity;
+import com.jfarro.app.domain.entities.search.PersonSearchEntity;
+import com.jfarro.app.domain.model.DocumentTypeModel;
+import com.jfarro.app.domain.model.PersonModel;
+import com.jfarro.app.domain.entities.transactional.PersonEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class PersonMapper {
 
-    public PersonEntity personToEntity(Person person) {
+    public PersonEntity personDomainToEntity(PersonModel person) {
         return PersonEntity.builder()
-                .personId(person.getPersonId())
-                .names(person.getNames())
-                .lastNames(person.getLastNames())
-                .fullName(person.getFullName())
-                .documentNumber(person.getDocumentNumber())
-                .documentTypeId(person.getDocumentType().getDocumentTypeId())
-                .phoneNumber(person.getPhoneNumber())
-                .email(person.getEmail())
-                .build();
+            .personId(person.getPersonId())
+            .documentNumber(person.getDocumentNumber())
+            .documentTypeId(person.getDocumentTypeModel().getDocumentTypeId())
+            .phoneNumber(person.getPhoneNumber())
+            .email(person.getEmail())
+            .build();
     }
 
-    public Person personToDomain(PersonEntity person) {
-        return Person.builder()
-                .personId(person.getPersonId())
-                .names(person.getNames())
-                .lastNames(person.getLastNames())
-                .fullName(person.getFullName())
-                .documentNumber(person.getDocumentNumber())
-                .documentType(DocumentType.builder()
-                        .documentTypeId(person.getDocumentTypeId())
-                        .build())
-                .phoneNumber(person.getPhoneNumber())
-                .email(person.getEmail())
-                .build();
+    public PersonModel personEntityToDomain(PersonEntity person) {
+        return PersonModel.builder()
+            .personId(person.getPersonId())
+            .documentNumber(person.getDocumentNumber())
+            .documentTypeModel(DocumentTypeModel.builder()
+                .documentTypeId(person.getDocumentTypeId())
+                .build())
+            .phoneNumber(person.getPhoneNumber())
+            .email(person.getEmail())
+            .build();
+    }
+
+    public PersonModel personSearchEntityToDomain(PersonSearchEntity person) {
+        return PersonModel.builder()
+            .personId(person.getPersonId())
+            .documentNumber(person.getDocumentNumber())
+            .documentTypeModel(DocumentTypeModel.builder()
+                .documentTypeId(person.getDocumentTypeId())
+                .code(person.getCode())
+                .shortName(person.getShortName())
+                .longName(person.getLongName())
+                .build())
+            .phoneNumber(person.getPhoneNumber())
+            .email(person.getEmail())
+            .build();
     }
 }

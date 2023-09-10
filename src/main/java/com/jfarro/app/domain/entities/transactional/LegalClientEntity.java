@@ -1,4 +1,4 @@
-package com.jfarro.app.domain.entities;
+package com.jfarro.app.domain.entities.transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,23 +8,20 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "document_types")
+@Table("legal_clients")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DocumentTypeEntity {
+public class LegalClientEntity {
 
     @Id
     @Column("id")
-    private Integer documentTypeId;
+    private Integer legalClientId;
 
-    @Column("code")
-    private String code;
+    @Column("id_person")
+    private Integer personId;
 
-    @Column("name")
-    private String name;
-
-    @Column("nomenclature")
-    private String nomenclature;
+    @Column("business_name")
+    private String businessName;
 }

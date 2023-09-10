@@ -9,13 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Person {
+public class PersonModel {
     private Integer personId;
-    private DocumentType documentType;
-    private String names;
-    private String lastNames;
-    private String fullName;
     private String documentNumber;
+    private DocumentTypeModel documentTypeModel;
     private String phoneNumber;
     private String email;
 }

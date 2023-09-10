@@ -1,4 +1,4 @@
-package com.jfarro.app.domain.entities;
+package com.jfarro.app.domain.entities.transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "persons")
+@Table("persons")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,16 +19,10 @@ public class PersonEntity {
     @Column("id")
     private Integer personId;
 
-    @Column("names")
-    private String names;
+    @Column("id_document_type")
+    private Integer documentTypeId;
 
-    @Column("last_names")
-    private String lastNames;
-
-    @Column("full_name")
-    private String fullName;
-
-    @Column( "document_number")
+    @Column("document_number")
     private String documentNumber;
 
     @Column("phone_number")
@@ -36,7 +30,4 @@ public class PersonEntity {
 
     @Column("email")
     private String email;
-
-    @Column("id_document_type")
-    private Integer documentTypeId;
 }

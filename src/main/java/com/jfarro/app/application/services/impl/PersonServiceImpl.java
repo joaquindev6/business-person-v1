@@ -2,7 +2,7 @@ package com.jfarro.app.application.services.impl;
 
 import com.jfarro.app.application.services.DocumentTypeService;
 import com.jfarro.app.application.services.PersonService;
-import com.jfarro.app.domain.model.Person;
+import com.jfarro.app.domain.model.PersonModel;
 import com.jfarro.app.domain.ports.out.CreateCaseUse;
 import com.jfarro.app.domain.ports.out.DeleteCaseUse;
 import com.jfarro.app.domain.ports.out.RetrievalCaseUse;
@@ -16,15 +16,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class PersonServiceImpl implements PersonService {
 
-    private final CreateCaseUse<Person> createCaseUse;
-    private final UpdateCaseUse<Person> updateCaseUse;
+    private final CreateCaseUse<PersonModel> createCaseUse;
+    private final UpdateCaseUse<PersonModel> updateCaseUse;
     private final DeleteCaseUse deleteCaseUse;
-    private final RetrievalCaseUse<Person> retrievalCaseUse;
+    private final RetrievalCaseUse<PersonModel> retrievalCaseUse;
     private final DocumentTypeService documentTypeService;
 
     @Override
-    public Observable<Person> create(Person person) {
-        return createCaseUse.create(person);
+    public Observable<PersonModel> create(PersonModel person) {
+        return createCaseUse.create(person)
+                .flatMap(this::documentTypeMapper);
     }
 
     @Override
@@ -33,22 +34,25 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Observable<Person> findAll() {
-        return retrievalCaseUse.findAll()
-                .flatMap(person -> documentTypeService.findById(person.getDocumentType().getDocumentTypeId())
-                        .map(documentType -> {
-                            person.setDocumentType(documentType);
-                            return person;
-                        }));
+    public Observable<PersonModel> findAll() {
+        return retrievalCaseUse.findAll();
     }
 
     @Override
-    public Observable<Person> findById(Integer personId) {
+    public Observable<PersonModel> findById(Integer personId) {
         return retrievalCaseUse.findById(personId);
     }
 
     @Override
-    public Observable<Person> update(Person person) {
-        return updateCaseUse.update(person);
+    public Observable<PersonModel> update(PersonModel person, Integer id) {
+        return updateCaseUse.update(person, id);
+    }
+
+    private Observable<PersonModel> documentTypeMapper(PersonModel person) {
+        return documentTypeService.findById(person.getDocumentTypeModel().getDocumentTypeId())
+            .map(documentType -> {
+                person.setDocumentTypeModel(documentType);
+                return person;
+            });
     }
 }

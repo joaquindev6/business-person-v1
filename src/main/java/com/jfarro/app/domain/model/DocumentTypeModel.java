@@ -5,15 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerNatural {
-    private Integer customerNaturaId;
-    private Person person;
-    private Date dateRegister;
-    private Date dateModify;
+public class DocumentTypeModel {
+    private Integer documentTypeId;
+    private String code;
+    private String longName;
+    private String shortName;
 }
