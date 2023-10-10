@@ -24,9 +24,9 @@ public class PersonRepositoryMysqlAdapter implements PersonRepository {
     @Transactional(readOnly = true)
     @Override
     public Observable<PersonModel> findAll() {
-        return RxJava2Adapter.fluxToObservable(personRepositoryMySQL.findAllPersons())
+        return RxJava2Adapter.fluxToObservable(personRepositoryMySQL.findAll())
                 .subscribeOn(Schedulers.io())
-                .map(mapper::personSearchEntityToDomain)
+                .map(mapper::personEntityToDomain)
                 .doOnSubscribe(disposable -> log.info("Getting persons by MySQL"))
                 .doOnComplete(() -> log.info("Persons obtained from MySQL correctly"))
                 .doOnError(throwable -> log.error("Error getting persons from MySQL: {}", throwable.getMessage()));
