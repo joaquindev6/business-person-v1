@@ -1,6 +1,5 @@
 package com.jfarro.app.infrastructure.mapper;
 
-import com.jfarro.app.domain.entities.search.PersonSearchEntity;
 import com.jfarro.app.domain.model.DocumentTypeModel;
 import com.jfarro.app.domain.model.PersonModel;
 import com.jfarro.app.domain.entities.transactional.PersonEntity;
@@ -27,21 +26,6 @@ public class PersonMapper {
             .documentNumber(person.getDocumentNumber())
             .documentTypeModel(DocumentTypeModel.builder()
                 .documentTypeId(person.getDocumentTypeId())
-                .build())
-            .phoneNumber(person.getPhoneNumber())
-            .email(person.getEmail())
-            .build();
-    }
-
-    public PersonModel personSearchEntityToDomain(PersonSearchEntity person) {
-        return PersonModel.builder()
-            .personId(person.getPersonId())
-            .documentNumber(person.getDocumentNumber())
-            .documentTypeModel(DocumentTypeModel.builder()
-                .documentTypeId(person.getDocumentTypeId())
-                .code(person.getCode())
-                .shortName(person.getShortName())
-                .longName(person.getLongName())
                 .build())
             .phoneNumber(person.getPhoneNumber())
             .email(person.getEmail())
