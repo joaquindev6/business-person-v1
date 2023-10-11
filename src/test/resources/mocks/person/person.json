@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "documentNumber": "71441518",
+  "documentType": {
+    "id": 1,
+    "code": "01",
+    "longName": "DOCUMENTO NACIONAL DE IDENTIDAD",
+    "shortName": "DNI"
+  },
+  "phoneNumber": "933057428",
+  "email": "JOAQUINFARRO@GMAIL.COM"
+}
