@@ -12,9 +12,9 @@
 
 	<groupId>com.jfarro.app</groupId>
 	<artifactId>business-person-v1</artifactId>
-	<version>1.4.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>business-person-v1</name>
-	<description>Demo project for Spring Boot</description>
+	<description>My personal project - Joaquin Farro Quiroz</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>io.asyncer</groupId>
 			<artifactId>r2dbc-mysql</artifactId>
-			<version>1.0.2</version>
+			<version>0.9.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

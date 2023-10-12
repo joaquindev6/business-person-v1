@@ -50,7 +50,8 @@ public class PersonServiceImpl implements PersonService {
                 personDtoUpdate.setEmail(personDto.getEmail());
                 return personPersistencePort.save(personMapper.toDomain(personDtoUpdate));
             })
-            .map(personMapper::toDto);
+            .map(personMapper::toDto)
+            .flatMap(this::addDocumentType);
     }
 
     @Override
